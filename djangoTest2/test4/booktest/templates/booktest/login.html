@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<br lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>模板文件</title>
+
+   {% comment %} <script src="/static/js/jquery-1.12.4.min.js"></script>{% endcomment %}
+
+        {% comment %} <script>
+
+  $(function () {
+            $('#loginAjax').click(function () {
+                username = $('#username').val();
+                password = $('#password').val();
+                $.ajax({
+                    'url': 'login_check',
+                    'type': 'post',//请求方式
+                    'data': {'username': username, 'password': password},//Ajax返回参数，返回用户信息
+                    'dataType': 'json',
+                }).success(function (data) {
+                    if (data.res == 0) {//如果登陆失败，返回
+                        $('#message').show().html("用户名或者密码错误")
+                    } else {//如果登陆成功返回到主页
+                        location.href = "/index"
+                    }
+
+
+                })
+            })
+        })
+
+</script>
+
+    <style>
+        #message {
+            display: none;
+            color: red;
+
+        }
+    </style>{% endcomment %}
+
+</head>
+<form method="post" action="/login_check">
+    {% csrf_token %}{% comment %}csrf_token的防护措施 跨站请求修改密码{% endcomment %}
+    用户名:<input type="text" name="username" value="{{ username }}"><br>
+    密码:<input type="password" name="password"><br>
+    <input type="checkbox" name="remember">记住用户名<br>
+{% comment %}直接访问验证码url会直接显示图片，当然可以调整验证码图片大小，这个是前端的事情{% endcomment %}
+    <img src="/verify_code"><input type="text" name="code1"><br>
+    <input type="submit"  value="登陆">
+{% comment %}<div id="message"></div>{% endcomment %}
+</form>
+
+
+</body>
+</html>

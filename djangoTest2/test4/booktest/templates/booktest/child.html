@@ -1,0 +1,6 @@
+{% extends 'booktest/base.html' %}
+{% block b1 %}
+    <h1>这是子模版</h1>{# 这个是可以替换base.html中指定区域的内容 #}
+    {{ block.super }}  {# 这个是可以指定加载base.html中的内容 #}
+{% endblock b1 %}
+

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>url反向解析</title>
+</head>
+<body>
+<a href="index.html">点击</a>
+{% comment %}url反向解析，booktest指urls.py默认的namespace,index指新建的urls.py里面的name
+,这样配置无论你以前的index主页的名称怎么改动都不会影响项目的所有名字的改变{% endcomment %}
+<a href="{% url 'booktest:index' %}">点击</a>
+
+<a href="{% url 'booktest:url_re' 1 2 %}">url带参数</a>
+</body>
+</html>
